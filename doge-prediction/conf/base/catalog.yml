@@ -10,3 +10,7 @@ doge:
 max-date:
   type: json.JSONDataSet
   filepath: data/02_intermediate/max_date.json
+
+avg-high:
+  type: json.JSONDataSet
+  filepath: data/02_intermediate/avg_high.json
