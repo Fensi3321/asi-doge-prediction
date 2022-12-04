@@ -14,3 +14,7 @@ max-date:
 avg_high:
   type: json.JSONDataSet
   filepath: data/02_intermediate/avg_high.json
+
+doge_processed:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/doge_processed.csv

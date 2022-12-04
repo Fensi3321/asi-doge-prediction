@@ -6,11 +6,13 @@ generated using Kedro 0.18.3
 from kedro.pipeline import Pipeline, node, pipeline
 from .nodes import max_date
 from .nodes import avg_high
+from .nodes import prepare_data
+from .nodes import train_model
 
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
-        node(
+                node(
             func=max_date,
             inputs='doge',
             outputs='max-date'
@@ -19,5 +21,15 @@ def create_pipeline(**kwargs) -> Pipeline:
             func=avg_high,
             inputs='doge',
             outputs='avg_high'
+        ),
+        node(
+            func=prepare_data,
+            inputs='doge',
+            outputs='doge_processed'
+        ),
+        node(
+            func=train_model,
+            inputs='doge_processed',
+            outputs=None
         )
     ])
