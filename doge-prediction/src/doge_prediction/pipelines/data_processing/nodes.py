@@ -6,6 +6,9 @@ generated using Kedro 0.18.3
 import pandas as pd
 import datetime
 import tensorflow as tf
+import wandb
+
+wandb.init(project='asi-project')
 
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
@@ -35,12 +38,9 @@ def prepare_data(data: pd.DataFrame) -> pd.DataFrame:
     return data
 
 
-import wandb
 import optuna
 from optuna.integration import KerasPruningCallback
 def train_model(df: pd.DataFrame):
-
-    wandb.init(project='asi-project')
 
     def create_model(trial: optuna.Trial):
         return tf.keras.models.Sequential([
@@ -114,5 +114,9 @@ def train_model(df: pd.DataFrame):
     # )
 
 
-
-
+from sklearn import linear_model
+def train_model2(data: pd.DataFrame) -> pd.DataFrame:
+    X = data.drop('Mean', axis=1)
+    Y = data['Mean']
+    reg = linear_model.BayesianRidge()
+    reg.fit(X, Y)

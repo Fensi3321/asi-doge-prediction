@@ -8,6 +8,7 @@ from .nodes import max_date
 from .nodes import avg_high
 from .nodes import prepare_data
 from .nodes import train_model
+from .nodes import train_model2
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -29,6 +30,11 @@ def create_pipeline(**kwargs) -> Pipeline:
         ),
         node(
             func=train_model,
+            inputs='doge_processed',
+            outputs=None
+        ),
+        node(
+            func=train_model2,
             inputs='doge_processed',
             outputs=None
         )
